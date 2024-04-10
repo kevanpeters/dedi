@@ -21,7 +21,7 @@ Remove-Item "steamcmd.zip"
 Invoke-WebRequest "https://raw.githubusercontent.com/kevanpeters/dedi/main/game_data/wreckfest/config.cfg" -OutFile "$gameDir/server_config.cfg"
 
 #install directx
-
+Write-Host "Installing Direct X "
 $url = "https://download.microsoft.com/download/8/4/A/84A35BF1-DAFE-4AE8-82AF-AD2AE20B6B14/directx_Jun2010_redist.exe"
 $output = "C:\temp\dxwebsetup.exe"
 $extractPath = "C:\temp\dxsetup"
@@ -39,9 +39,10 @@ $process = Start-Process -FilePath $extractedFile -ArgumentList $arguments -Wait
 
 ## Run server in gameDir
 
-$gameDir = "C:\wreckfest-server\steamapps\common\Wreckfest Dedicated Server"
-Start-Process -FilePath "$gameDir\Wreckfest_x64.exe" -ArgumentList "-s server_config.cfg" -NoNewWindow
+Write-Host "Setup done, starting server "
 
+$gameDir = "C:\wreckfest-server\steamapps\common\Wreckfest Dedicated Server"
+Start-Process -FilePath "$gameDir\start_server"
 
 #print out done
 Write-Host "Setup completed with exit code: " $process.ExitCode
