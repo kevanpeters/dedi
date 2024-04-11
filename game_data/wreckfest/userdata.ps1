@@ -42,7 +42,9 @@ $process = Start-Process -FilePath $extractedFile -ArgumentList $arguments -Wait
 Write-Host "Setup done, starting server "
 
 $gameDir = "C:\wreckfest-server\steamapps\common\Wreckfest Dedicated Server"
-Start-Process -FilePath "$gameDir\start_server"
+
+Set-Location -Path $gameDir
+Start-Process -FilePath ".\start_server"
 
 #print out done
 Write-Host "Setup completed with exit code: " $process.ExitCode
